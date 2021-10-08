@@ -1,0 +1,48 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+body{
+    height: 100vh;
+    background-color: #000;
+    
+}
+
+.connect-board{
+    height: 700px;
+    width: 700px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(110, 110, 110);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.dot{
+    height: 80px;
+    width: 80px;
+    margin: 5px;       
+    background-color: rgb(179, 179, 179);
+    border-radius: 50px;
+}
+
+
+button{
+    border: none;
+    padding: 30px;
+}
+
+
+.taken1{
+    background-color: rgb(219, 28, 28);
+}
+.taken2{
+    background-color: rgb(44, 125, 172);
+}
