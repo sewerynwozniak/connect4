@@ -3,7 +3,9 @@ class Connect4{
      
     constructor(){
         this.connectBoard = document.querySelector('.connect-board');
+        this.columnsWrapper = document.querySelectorAll('.columnWrapper');
         this.button = document.querySelector('button')
+        this.pointer = document.querySelector('.pointer')
         this.currentPlayer=1;
         this.gameIsGoing = true;
         this.connArr=[
@@ -16,36 +18,51 @@ class Connect4{
             [null, null, null, null, null, null, null],
             [null, null, null, null, null, null, null],
         ]
-        this.actions();
+        this.handleClickColumn = (column)=>{
+            if(!this.gameIsGoing)return;
+            this.clickColumn(column)
+        }
+        this.events();
     }
 
 
-    actions(){
-        this.connectBoard.addEventListener('click', (e)=>this.clickColumn(e));
+    events(){ 
+        this.columnsWrapper.forEach(column=>column.addEventListener('click', this.handleClickColumn.bind(this, column)))
+        this.connectBoard.addEventListener('mousemove', this.handlePointer.bind(this));
     }
 
 
-    clickColumn(e){
-     
-        let column = e.target.getAttribute('data-column');
+    handlePointer(e){
+        const xPosition = e.pageX
+        const connectBoardPosition = this.connectBoard.getBoundingClientRect().left
+        const xPositionReftoBoard = connectBoardPosition-xPosition;
+        this.pointer.style.left = -xPositionReftoBoard +'px';
+    }
 
-        this.checkIfFree(column);
-        this.checkIfWin();
 
+    switchPlayers(){
         if(this.currentPlayer==1){
             this.currentPlayer=2;
         }else{
             this.currentPlayer=1;
         }
+    }
 
+
+
+
+
+    clickColumn(col){       
+        let column = col.getAttribute('data-wrapperColumn'); 
+        this.checkIfFree(column);
+        this.dropAnimation()
+        this.checkIfWin();
+        this.switchPlayers()
 
     }
 
 
      checkIfFree(column){
-
-
-        //if(connArr[5][column] != null) return;
 
         for(let i=0;i<this.connArr.length;i++){
 
@@ -56,7 +73,6 @@ class Connect4{
             }
         }
         
-
     }
 
 
@@ -118,8 +134,6 @@ class Connect4{
                     this.verticalCheckWin(i,j,2)
                 }
                 }
-        
-
 
             }
         
@@ -127,27 +141,51 @@ class Connect4{
 
 
 
+    finishGame(){
+        console.log('finish game')
+        this.gameIsGoing = false;  
+    }
+
+    restartGame(){
+        connArr = this.connArr.forEach(el=>el.map(e=>null));
+    }
+
+
+
+    //animations
+    switchPlayersAnimation(){
+        if(this.currentPlayer==1){
+            this.pointer.classList.remove('token2')
+            this.pointer.classList.add('token1')
+        }else{
+            this.pointer.classList.remove('token1')
+            this.pointer.classList.add('token2')
+        }
+    }
+
+    dropAnimation(){
+        this.pointer.style.animation='dropAnimation 0.3s forwards'
+      
+        setTimeout(()=>{
+            this.switchPlayersAnimation()
+            this.pointer.style.animation=''
+        },500)
+    }
+
+
 
     takeSlotAnimation(row, column){
 
-        let slot = document.querySelector(`[data-row='${row}'][data-column='${column}']`)
         let animObj={
-            1:'taken1',
-            2:'taken2'
+            1:'token1',
+            2:'token2'
         }
+        let slot = document.querySelector(`[data-row='${row}'][data-column='${column}']`)
+
         slot.classList.add(animObj[this.currentPlayer])
+        slot.style.animation='bounceAnimation 0.5s ease-out forwards'
 
     }
-
-
-    finishGame(){
-        this.gameIsGoing = false;
-        this.connectBoard.removeEventListener('click', this.listenerReff);
-        //connArr = this.connArr.forEach(el=>el.map(e=>null));
-
-
-    }
-
 
 
 
