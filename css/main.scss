@@ -9,19 +9,57 @@ body{
     overflow: hidden;
 }
 
+
+
+.modal{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    width: 70%;
+    height: 80%;
+    background-color: rgba(16, 27, 121, 0.829);
+    border-radius: 20px;
+    z-index: 1;
+    transition: 0.5s;
+
+    h3{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: #fff;
+        font-size: 50px;
+        letter-spacing: 1px;
+    }
+    button{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        padding: 0;
+        color: #fff;
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+    }
+}
+
+
+
 .connect-board{
-    height: 700px;
+
+    height: 600px;
     width: 700px;
+    padding: 20px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: rgb(110, 110, 110);
+    background-color: rgb(32, 74, 190);
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center;
+    border-radius: 10px;
 
 
 }
@@ -32,9 +70,9 @@ body{
     flex-direction: column;
     justify-content: space-around;
 
-        &:hover{
-            outline: 1px solid #000;
+        &:hover{                 
             cursor: pointer;
+            box-shadow: 6px 0 1px -4px rgb(182, 182, 182), -6px 0 1px -4px rgb(182, 182, 182);
         }
 
 }
@@ -47,10 +85,53 @@ body{
     height: 80px;
     width: 80px;
     margin: 5px;       
-    background-color: rgb(170, 34, 34);
+    background-color: rgb(240, 40, 40);
     border-radius: 50px;
     
 }
+
+
+
+
+.dot{
+    position: relative;
+    height: 80px;
+    width: 80px;
+    margin: 5px;       
+    background-color: rgb(204, 206, 209);
+    border: 2px solid rgb(52, 55, 58);
+    border-radius: 50px;
+
+}
+
+.highlightedToken{
+    filter: brightness(200%);
+}
+
+
+.restartBtn{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+.token1{
+    background-color: rgb(240, 40, 40);
+}
+.token2{
+    background-color: rgb(233, 236, 45);
+}
+
+
+
+//animations
 
 @keyframes dropAnimation{
 
@@ -94,30 +175,4 @@ body{
         opacity: 1;
     }
 
-}
-
-
-.dot{
-    position: relative;
-    height: 80px;
-    width: 80px;
-    margin: 5px;       
-    background-color: rgb(192, 186, 186);
-    border: 1px solid rgb(60, 63, 16);
-    border-radius: 50px;
-
-}
-
-
-button{
-    border: none;
-    padding: 30px;
-}
-
-
-.token1{
-    background-color: rgb(219, 28, 28);
-}
-.token2{
-    background-color: rgb(44, 125, 172);
 }
