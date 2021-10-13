@@ -31,6 +31,7 @@ body{
         color: #fff;
         font-size: 50px;
         letter-spacing: 1px;
+        text-align: center;
     }
     button{
         position: absolute;
@@ -61,7 +62,6 @@ body{
     justify-content: space-around;
     border-radius: 10px;
 
-
 }
 
 
@@ -87,7 +87,7 @@ body{
     margin: 5px;       
     background-color: rgb(240, 40, 40);
     border-radius: 50px;
-    
+   
 }
 
 
@@ -174,5 +174,65 @@ body{
         transform: translateY(0px);
         opacity: 1;
     }
+
+}
+
+
+
+// mediaQueries
+
+@media screen and (max-width:800px) {
+    
+    .connect-board{
+
+        height: 400px;
+        width: 500px;
+
+    }
+
+    .dot{
+        height: 50px;
+        width: 50px;
+    }
+
+    .pointer{
+        height: 50px;
+        width: 50px;   
+    }
+
+    .restartBtn{
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+}
+
+
+@media screen and (max-width:600px) {
+    
+    .connect-board{
+
+        height: 200px;
+        width: 250px;
+
+    }
+
+    .dot{
+        height: 20px;
+        width: 20px;
+    }
+
+    .pointer{
+        height: 20px;
+        width: 20px;   
+    }
+
+    .modal{
+ 
+        h3{
+            font-size: 20px;
+        }
+    }
+
 
 }
